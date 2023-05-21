@@ -1,8 +1,6 @@
 package com.example.applestore.Activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.applestore.APIService.APIService;
-import com.example.applestore.Adapter.CartAdapter;
+import com.example.applestore.Adapter.UserAdapter;
 import com.example.applestore.Adapter.CheckoutAdapter;
-import com.example.applestore.Fragment.OrderFragment;
 import com.example.applestore.R;
 import com.example.applestore.Retrofit.RetrofitClient;
 import com.example.applestore.SharedPreferences.SharedPrefManager;
@@ -36,7 +32,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.util.Date;
+
 public class CheckoutActivity extends AppCompatActivity {
 
     RecyclerView rv_product_list;
@@ -48,7 +44,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     ArrayList<CartDetail> listCartDetail;
 
-    CartAdapter cartAdapter;
+    UserAdapter cartAdapter;
     CheckoutAdapter checkoutAdapter;
 
     int totalPrice=0;

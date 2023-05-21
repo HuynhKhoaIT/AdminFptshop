@@ -18,6 +18,7 @@ public class OrderStatus implements Serializable {
 
     public OrderStatus() {
     }
+
     public OrderStatus(int maTrangThai){
         this.maTrangThai = maTrangThai;
     }
