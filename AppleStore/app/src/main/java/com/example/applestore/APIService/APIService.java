@@ -80,6 +80,9 @@ public interface APIService {
     @POST("donhang")
     Call<Order> createOrder(@Body Order order);
 
+    @POST("sanpham")
+    Call<Product> createProduct(@Body Product product);
+
     @GET("donhangbymakh")
     Call<ArrayList<Order>> getListOrder(@Query("id") int id);
 

@@ -57,6 +57,19 @@ public class Product implements Serializable {
         this.listCTDH = listCTDH;
     }
 
+    public Product(Category danhMuc, String tenSP, String moTa, int giaGoc, int giaBanThuong, int giaKhuyenMai, int soLuong, String anh) {
+        this.danhMuc = danhMuc;
+        this.tenSP = tenSP;
+        this.moTa = moTa;
+        this.giaGoc = giaGoc;
+        this.giaBanThuong = giaBanThuong;
+        this.giaKhuyenMai = giaKhuyenMai;
+        this.soLuong = soLuong;
+        this.anh = anh;
+        this.isDeteted = 0;
+    }
+
+
     public int getMaSP() {
         return maSP;
     }

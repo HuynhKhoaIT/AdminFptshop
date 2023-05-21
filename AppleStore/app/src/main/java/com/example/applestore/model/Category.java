@@ -29,6 +29,9 @@ public class Category implements Serializable {
         this.anhdm = anhdm;
         this.tenDM = tenDM;
     }
+    public Category(int maDM){
+        this.maDM = maDM;
+    }
 
     public int getMaDM() {
         return maDM;
