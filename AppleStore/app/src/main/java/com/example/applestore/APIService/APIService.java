@@ -107,4 +107,7 @@ public interface APIService {
 
     @GET("allusers")
     Call<ArrayList<User>> getAllUser();
+
+    @PUT("donhang")
+    Call<Order> updateOrder(@Query("id") int id,@Body Order order);
 }
