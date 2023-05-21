@@ -3,6 +3,8 @@ package com.example.applestore.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +42,10 @@ public class BlogFragment extends Fragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         getAllBlog();
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+        actionBar.setTitle("Blog");
+
         return view;
     }
     private  void getAllBlog()

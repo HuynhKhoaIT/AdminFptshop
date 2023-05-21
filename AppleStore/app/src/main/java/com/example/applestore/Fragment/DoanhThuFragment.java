@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.applestore.R;
@@ -29,6 +31,9 @@ public class DoanhThuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_doanh_thu, container, false);
         barChart = view.findViewById(R.id.chart);
         createBarChart();
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+        actionBar.setTitle("Sales");
         return view;
     }
 
