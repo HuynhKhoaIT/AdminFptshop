@@ -147,8 +147,8 @@
                     android:id="@+id/btn_order_cancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_radius"
-                    android:text="Huỷ"/>
+                    android:background="#F60000"
+                    android:text="Huỷ" />
             </LinearLayout>
 
         </LinearLayout>
