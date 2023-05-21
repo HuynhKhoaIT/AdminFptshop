@@ -1,41 +1,21 @@
 package com.example.applestore.Activity;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.applestore.APIService.APIService;
-import com.example.applestore.Adapter.ProductReviewAdapter;
-import com.example.applestore.Fragment.CartFragment;
 import com.example.applestore.R;
 import com.example.applestore.Retrofit.RetrofitClient;
-import com.example.applestore.SharedPreferences.SharedPrefManager;
-import com.example.applestore.model.CartDetail;
-import com.example.applestore.model.Category;
-import com.example.applestore.model.Product;
-import com.example.applestore.model.Review;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DetailProductActivity extends AppCompatActivity {
     TextView detailName, detailPrice, detailDes, amount;
