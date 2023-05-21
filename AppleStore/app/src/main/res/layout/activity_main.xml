@@ -47,9 +47,8 @@
             android:id="@+id/bottomNavigationView"
             app:labelVisibilityMode="labeled"
             android:layout_gravity="bottom"
+            app:itemIconTint="@color/primary"
+            app:itemTextColor="@color/primary"
             app:menu="@menu/bottom_menu"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

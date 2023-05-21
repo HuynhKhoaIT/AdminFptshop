@@ -1,5 +1,4 @@
 package com.example.applestore.Activity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.List;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.applestore.Fragment.AccountFragment;
 import com.example.applestore.Fragment.BlogFragment;
 import com.example.applestore.Fragment.CusFragment;
 import com.example.applestore.Fragment.DoanhThuFragment;
@@ -31,21 +29,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     private SearchView searchView;
     private DrawerLayout drawerLayout;
-
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar); //Ignore red line errors
-        setSupportActionBar(toolbar);
+
+
 //      Ánh xạ
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
-
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar); //Ignore red line errors
+
+        setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
                 R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
@@ -54,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
-        }
+
+        navigationView.setNavigationItemSelectedListener(this);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CartFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new AccountFragment()).commit();
                 break;
             case R.id.nav_share:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new BlogFragment()).commit();
@@ -119,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
