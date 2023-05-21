@@ -11,13 +11,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.List;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.applestore.Fragment.AccountFragment;
 import com.example.applestore.Fragment.BlogFragment;
-import com.example.applestore.Fragment.CartFragment;
+import com.example.applestore.Fragment.CusFragment;
 import com.example.applestore.Fragment.DoanhThuFragment;
 import com.example.applestore.Fragment.HomeFragment;
 import com.example.applestore.Fragment.OrderFragment;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
                     break;
                 case R.id.cart:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CartFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CusFragment()).commit();
                     break;
                 case R.id.blog:
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new BlogFragment()).commit();

@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.applestore.APIService.APIService;
 import com.example.applestore.Adapter.CategoryAdapter;
@@ -22,6 +24,7 @@ import com.example.applestore.Retrofit.RetrofitClient;
 import com.example.applestore.Utils.CurrencyFormatter;
 import com.example.applestore.model.Order;
 import com.example.applestore.model.OrderDetail;
+import com.example.applestore.model.OrderStatus;
 import com.example.applestore.model.Product;
 
 import java.util.ArrayList;
@@ -51,7 +54,8 @@ public class DetailOrderActivity extends AppCompatActivity {
 
     ArrayList<OrderDetail> listOrderDetail;
 
-    Button btn_order_confirm;
+    Button btn_order_confirm,btn_order_cancel;
+    Order order;
 
     int idOrder;
     @Override
@@ -67,21 +71,65 @@ public class DetailOrderActivity extends AppCompatActivity {
         order_status = findViewById(R.id.order_status);
         recOrder.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         btn_order_confirm = findViewById(R.id.btn_order_confirm);
+        btn_order_cancel = findViewById(R.id.btn_order_cancel);
         // Lay thong tin
         getData();
         getOrder(idOrder);
         btn_order_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ReviewActivity.class);
-                intent.putExtra(KEY_ORDER_TO_PRODUCT, idOrder);
-                context.startActivity(intent);
+                // lấy mã trạng thái hiện tại
+                int currentIDStatus = order.getTrangThai().getMaTrangThai();
+                // update order
+                order.setTrangThai(new OrderStatus(currentIDStatus+1));
+                // date bị lỗi nên sẽ set nó null
+                order.setNgayDatHang(null);
+                System.out.println(idOrder);
+                System.out.println(order.getMaDH());
+                updateOrder(idOrder,order);
+                // dùng reload để sử lý tạm
+                recreate();
+            }
+        });
+        btn_order_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //goi api cancel
+                order.setTrangThai(new OrderStatus(5));
+                // date bị lỗi nên sẽ set nó null
+                order.setNgayDatHang(null);
+                System.out.println(idOrder);
+                System.out.println(order.getMaDH());
+                updateOrder(idOrder,order);
+                // dùng reload để xử lý tạm
+                recreate();
+            }
+        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    private void updateOrder(int idOrder,Order order){
+        Call<Order> call = apiService.updateOrder(idOrder,order);
+        call.enqueue(new Callback<Order>() {
+            @Override
+            public void onResponse(Call<Order> call, Response<Order> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(DetailOrderActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(DetailOrderActivity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Order> call, Throwable t) {
+                System.out.println("Lỗi kết nối API");
             }
         });
     }
     private void getData() {
         Intent intent = getIntent();
-        idOrder = getIntent().getIntExtra(OrderAdapter.KEY_ORDER_TO_PRODUCT, 0);
+        idOrder = intent.getIntExtra(OrderAdapter.KEY_ORDER_TO_PRODUCT, 0);
         System.out.println("Mã đơn hàng "+idOrder);
     }
     private void getOrder(int id) {
@@ -91,7 +139,7 @@ public class DetailOrderActivity extends AppCompatActivity {
             public void onResponse(Call<Order> call, Response<Order> response) {
                 if(response.isSuccessful()){
                     System.out.println(response.body());
-                    Order order = response.body();
+                    order = response.body();
                     System.out.println(order.getListChiTietDonHang().size());
                     listOrderDetail = order.getListChiTietDonHang();
                     detailOrderAdapter = new DetailOrderAdapter(context,listOrderDetail);
@@ -102,6 +150,25 @@ public class DetailOrderActivity extends AppCompatActivity {
                     order_date.setText(order.getNgayDatHang()+"");
                     order_address.setText(order.getDiaChi()+"");
                     order_status.setText(order.getTrangThai().getTenTrangThai());
+                    // thay đổi nút
+                    int maTrangThai = order.getTrangThai().getMaTrangThai();
+                    if(maTrangThai == 1){
+                        btn_order_confirm.setText("Xác nhận đơn hàng");
+                    } else if (maTrangThai == 2) {
+                        btn_order_confirm.setText("Tiến hành giao hàng");
+                    } else if (maTrangThai == 3) {
+                        btn_order_confirm.setText("Xác nhận giao thành công");
+                    } else if (maTrangThai == 4) {
+                        btn_order_confirm.setText("Đã giao thành công");
+                        btn_order_confirm.setEnabled(false);
+                        btn_order_cancel.setEnabled(false);
+                    }
+                    // đơn hàng bị hủy
+                    else if (maTrangThai == 5) {
+                        btn_order_confirm.setText("Đơn hàng đã hủy");
+                        btn_order_confirm.setEnabled(false);
+                        btn_order_cancel.setEnabled(false);
+                    }
                 }
             }
             @Override
@@ -110,5 +177,18 @@ public class DetailOrderActivity extends AppCompatActivity {
             }
         });
     }
+    //    Bắt sự kiện khi bấm vào nút mũi tên quay lại
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
 
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
