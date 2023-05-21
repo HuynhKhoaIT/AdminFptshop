@@ -2,8 +2,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/white"
-    android:padding="16dp">
+    android:layout_margin="4dp"
+    android:padding="12dp"
+    android:background="@drawable/radius_white"
+    >
 
 
     <LinearLayout
@@ -23,7 +25,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginStart="16dp">
-
+            <TextView
+                android:id="@+id/customer_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mã khách hàng"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/customer_name"
                 android:layout_width="match_parent"
@@ -50,11 +58,5 @@
             android:src="@drawable/ic_cancel" />
     </LinearLayout>
 
-    <View
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        android:layout_gravity="bottom"/>
 
 </LinearLayout>
