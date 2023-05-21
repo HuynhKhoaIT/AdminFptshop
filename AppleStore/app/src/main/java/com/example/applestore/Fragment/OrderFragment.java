@@ -3,7 +3,6 @@ package com.example.applestore.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.core.view.ViewKt;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,19 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.applestore.APIService.APIService;
-import com.example.applestore.Adapter.CartAdapter;
 import com.example.applestore.Adapter.OrderAdapter;
-import com.example.applestore.Adapter.ProductAdapter;
 import com.example.applestore.R;
 import com.example.applestore.Retrofit.RetrofitClient;
 import com.example.applestore.SharedPreferences.SharedPrefManager;
-import com.example.applestore.Utils.CurrencyFormatter;
-import com.example.applestore.model.Cart;
 import com.example.applestore.model.Order;
-import com.example.applestore.model.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
