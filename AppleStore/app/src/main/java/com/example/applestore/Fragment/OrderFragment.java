@@ -3,6 +3,8 @@ package com.example.applestore.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,6 +53,9 @@ public class OrderFragment extends Fragment {
         rcOrder.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         int idUser = SharedPrefManager.getInstance(context).getUser().getMaKH();
         getAllListOrder();
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+        actionBar.setTitle("Order");
         return view;
     }
     private void getAllListOrder() {

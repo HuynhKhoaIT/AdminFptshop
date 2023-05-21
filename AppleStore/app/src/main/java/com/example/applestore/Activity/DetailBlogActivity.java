@@ -30,6 +30,7 @@ public class DetailBlogActivity extends AppCompatActivity {
             detailDesc.setText(bundle.getString("Desc"));
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Detail Blog");
     }
     //    Bắt sự kiện khi bấm vào nút mũi tên quay lại
     @Override

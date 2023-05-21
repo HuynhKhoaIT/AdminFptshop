@@ -135,20 +135,19 @@
                     android:id="@+id/btn_order_confirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_radius"
                     android:text="Xác Nhận"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="bottom">
                 <Button
                     android:id="@+id/btn_order_cancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#F60000"
-                    android:text="Huỷ" />
+                    android:text="Huỷ"
+                    android:backgroundTint="#FF0000"/>
             </LinearLayout>
 
         </LinearLayout>

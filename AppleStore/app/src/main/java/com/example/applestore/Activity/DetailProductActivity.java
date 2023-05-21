@@ -58,6 +58,7 @@ public class DetailProductActivity extends AppCompatActivity {
         btn_delete = findViewById(R.id.btn_repair);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Detail Product");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             // lấy thông tin truyền bằng bundel
@@ -94,5 +95,21 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //    Bắt sự kiện khi bấm vào nút mũi tên quay lại
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
