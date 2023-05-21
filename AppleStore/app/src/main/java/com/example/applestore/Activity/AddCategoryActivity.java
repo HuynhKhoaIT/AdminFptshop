@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.applestore.APIService.APIService;
 import com.example.applestore.R;
 import com.example.applestore.Retrofit.RetrofitClient;
+import com.example.applestore.model.Category;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -112,12 +113,40 @@ public class AddCategoryActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
                         // Xử lý phản hồi thành công từ server
-                        Toast.makeText(getApplicationContext(), "Upload thành công!", Toast.LENGTH_SHORT).show();
+                        String img = null;
+                        try {
+                            img = response.body().string();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Category category = new Category(img,etCategoryName.getText().toString());
+
+                        Call<Category> call1 = apiService.createCategory(category);
+                        call1.enqueue(new Callback<Category>() {
+                            @Override
+                            public void onResponse(Call<Category> call, Response<Category> response) {
+                                if(response.isSuccessful())
+                                {
+                                    Toast.makeText(AddCategoryActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(AddCategoryActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Category> call, Throwable t) {
+                                System.out.println("Lỗi kết nối API");
+                            }
+                        });
+
+//                        Toast.makeText(getApplicationContext(), "Upload thành công!", Toast.LENGTH_SHORT).show();
                     } else {
                         // Xử lý lỗi từ server
                         Toast.makeText(getApplicationContext(), "Upload thất bại!", Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     // Xử lý lỗi kết nối hoặc lỗi chung
