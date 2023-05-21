@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.applestore.APIService.APIService;
-import com.example.applestore.Adapter.CartAdapter;
 import com.example.applestore.Adapter.OrderAdapter;
 import com.example.applestore.Adapter.ProductAdapter;
 import com.example.applestore.R;

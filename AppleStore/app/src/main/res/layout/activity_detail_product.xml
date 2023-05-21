@@ -173,24 +173,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2">
-
-        <Button
-            android:id="@+id/btn_repair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sửa" />
-
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
+        <Button
+            android:id="@+id/btn_repair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:layout_marginRight="10dp"/>
+
+
 
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Xóa"
-            android:backgroundTint="#FF0000"/>
+            android:backgroundTint="#FF0000"
+            android:layout_marginRight="10dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
