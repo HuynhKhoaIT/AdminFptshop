@@ -20,6 +20,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.applestore.APIService.APIService;
 import com.example.applestore.Activity.AddCategoryActivity;
+import com.example.applestore.Activity.AddProductActivity;
 import com.example.applestore.Activity.LoginActivity;
 import com.example.applestore.Activity.MainActivity;
 import com.example.applestore.Adapter.CategoryAdapter;
@@ -58,7 +59,8 @@ public class HomeFragment extends Fragment {
         context = getActivity();
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         categoryRec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-
+        addcategory = view.findViewById(R.id.btn_add_category);
+        addproduct = view.findViewById(R.id.btn_add_product);
         // set Data
         getCategory();
         getProduct();
@@ -68,15 +70,20 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel(R.drawable.bn1, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.bnfstudio, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.bn2, ScaleTypes.FIT));
-
-
-//        addcategory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, AddCategoryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        addcategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AddCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+        addproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AddProductActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
     private void getCategory(){

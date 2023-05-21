@@ -51,7 +51,7 @@ public class DetailOrderActivity extends AppCompatActivity {
 
     ArrayList<OrderDetail> listOrderDetail;
 
-    Button btn_order_review;
+    Button btn_order_confirm;
 
     int idOrder;
     @Override
@@ -66,11 +66,11 @@ public class DetailOrderActivity extends AppCompatActivity {
         order_address = findViewById(R.id.order_address);
         order_status = findViewById(R.id.order_status);
         recOrder.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        btn_order_review = findViewById(R.id.btn_order_review);
+        btn_order_confirm = findViewById(R.id.btn_order_confirm);
         // Lay thong tin
         getData();
         getOrder(idOrder);
-        btn_order_review.setOnClickListener(new View.OnClickListener() {
+        btn_order_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ReviewActivity.class);

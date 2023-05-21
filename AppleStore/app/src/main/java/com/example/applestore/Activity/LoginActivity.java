@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(response.isSuccessful()){
                     User user = response.body();
-                    if(user!=null)
+                    if(user!=null && user.getIsAdmin() ==1)
                     {
                         // Lưu thông tin đăng nhập
                         SharedPrefManager.getInstance(context).userLogin(new User(

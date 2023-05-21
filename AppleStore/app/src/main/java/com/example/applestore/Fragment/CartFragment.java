@@ -48,7 +48,7 @@ public class CartFragment extends Fragment implements QuantityChangeListener {
     TextView cart_subtotal_text;
     TextView cart_subtotal_value;
     Button cart_checkout_button;
-    RecyclerView rcItemCart;
+    RecyclerView rcItemCustomer;
     CartAdapter cartAdapter;
 
     public CartFragment() {
@@ -60,23 +60,20 @@ public class CartFragment extends Fragment implements QuantityChangeListener {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         //Ánh xạ
         context = getActivity();
-        cart_subtotal_text = view.findViewById(R.id.cart_subtotal_text);
-        cart_subtotal_value = view.findViewById(R.id.cart_subtotal_value);
-        cart_checkout_button = view.findViewById(R.id.cart_checkout_button);
-        rcItemCart = view.findViewById(R.id.rcItemCart);
-        rcItemCart.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        rcItemCustomer = view.findViewById(R.id.rcItemCustomer);
+        rcItemCustomer.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
         int idUser = SharedPrefManager.getInstance(context).getUser().getMaKH();
         System.out.println(idUser);
 
         getCartDetail(idUser);
-        cart_checkout_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, CheckoutActivity.class);
-                context.startActivity(intent);
-            }
-        });
+//        cart_checkout_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, CheckoutActivity.class);
+//                context.startActivity(intent);
+//            }
+//        });
 
         return view;
     }
@@ -90,12 +87,12 @@ public class CartFragment extends Fragment implements QuantityChangeListener {
                     listCartDetail = cart.getChiTietGioHangs();
                     cartAdapter = new CartAdapter(getContext(),listCartDetail);
                     //Thay đổi tiền
-
-                    rcItemCart.setHasFixedSize(true);
-                    rcItemCart.setAdapter(cartAdapter);
-                    cart_subtotal_value.setText( CurrencyFormatter.formatCurrency(tongTienGioHang(listCartDetail)));
-                    cartAdapter.notifyDataSetChanged();
-                    cartAdapter.setQuantityChangeListener(CartFragment.this);
+//
+//                    rcItemCart.setHasFixedSize(true);
+//                    rcItemCart.setAdapter(cartAdapter);
+//                    cart_subtotal_value.setText( CurrencyFormatter.formatCurrency(tongTienGioHang(listCartDetail)));
+//                    cartAdapter.notifyDataSetChanged();
+//                    cartAdapter.setQuantityChangeListener(CartFragment.this);
                 }else{
                     Log.i("TAG","fail");
                 }

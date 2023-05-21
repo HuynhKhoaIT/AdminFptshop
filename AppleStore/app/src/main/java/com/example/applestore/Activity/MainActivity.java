@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.applestore.Fragment.AccountFragment;
 import com.example.applestore.Fragment.BlogFragment;
 import com.example.applestore.Fragment.CartFragment;
+import com.example.applestore.Fragment.DoanhThuFragment;
 import com.example.applestore.Fragment.HomeFragment;
 import com.example.applestore.Fragment.OrderFragment;
 import com.example.applestore.R;
@@ -49,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.order:
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new OrderFragment()).commit();
                     break;
-                case R.id.account:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new AccountFragment()).commit();
+                case R.id.sales:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DoanhThuFragment()).commit();
                     break;
             }
             return true;

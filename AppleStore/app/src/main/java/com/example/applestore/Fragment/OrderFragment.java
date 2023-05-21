@@ -50,9 +50,32 @@ public class OrderFragment extends Fragment {
         rcOrder = view.findViewById(R.id.rcOrder);
         rcOrder.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         int idUser = SharedPrefManager.getInstance(context).getUser().getMaKH();
-        getListOrder(idUser);
-
+        getAllListOrder();
         return view;
+    }
+    private void getAllListOrder() {
+        Call<ArrayList<Order>> call = apiService.getAllListOrder();
+        call.enqueue(new Callback<ArrayList<Order>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Order>> call, Response<ArrayList<Order>> response) {
+                if (response.isSuccessful()) {
+                    listOrders = response.body();
+                    orderAdapter = new OrderAdapter(getContext(), listOrders);
+                    rcOrder.setHasFixedSize(true);
+                    rcOrder.setAdapter(orderAdapter);
+                    orderAdapter.notifyDataSetChanged();
+                } else {
+                    Log.i("TAG", "Không lấy được");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Order>> call, Throwable t) {
+                Log.i("TAG", t.toString());
+                System.out.println("Không kết nối được API");
+            }
+        });
     }
 
     private void getListOrder(int idUser){

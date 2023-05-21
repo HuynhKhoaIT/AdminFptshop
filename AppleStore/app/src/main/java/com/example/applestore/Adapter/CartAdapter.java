@@ -70,7 +70,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
                 context.startActivity(intent);
             }
         });
-        holder.remove_product_button.setOnClickListener(new View.OnClickListener() {
+        holder.remove_customer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int idSP = cartDetail.getSanPham3().getMaSP();
@@ -176,7 +176,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageButton remove_product_button;
+        private ImageButton remove_customer_button;
         public ImageView productImage;
         public TextView productName;
         public TextView productPrice;
@@ -190,10 +190,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
             productImage = itemView.findViewById(R.id.product_image);
             productName = itemView.findViewById(R.id.product_name);
             productPrice = itemView.findViewById(R.id.product_price);
-            btnMinus = itemView.findViewById(R.id.quantity_minus_btn);
-            productAmount = itemView.findViewById(R.id.quantity_text_view);
-            btnPlus = itemView.findViewById(R.id.quantity_plus_button);
-            remove_product_button = itemView.findViewById(R.id.remove_product_button);
+            remove_customer_button = itemView.findViewById(R.id.remove_customer_button);
         }
     }
 

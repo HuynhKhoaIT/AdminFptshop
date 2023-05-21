@@ -96,4 +96,7 @@ public interface APIService {
 
     @GET("danhgiabymasp")
     Call<ArrayList<Review>> getListReview(@Query("masp") int masp);
+
+    @GET("donhang")
+    Call<ArrayList<Order>> getAllListOrder();
 }
