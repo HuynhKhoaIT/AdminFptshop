@@ -80,29 +80,6 @@
                 android:textColor="@color/primary"
                 android:textSize="16sp" />
 
-            <com.developer.gbuttons.GoogleSignInButton
-                android:id="@+id/googleBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:text="Sign in with Google"
-                app:isDarkTheme="true"
-                android:padding="8dp"/>
-
-            <TextView
-                android:id="@+id/signUpRedirectText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:padding="8dp"
-                android:text="Not yet registered? Sign Up"
-                android:textAlignment="center"
-                android:textColor="@color/primary"
-                android:textSize="18sp" />
 
         </LinearLayout>
 

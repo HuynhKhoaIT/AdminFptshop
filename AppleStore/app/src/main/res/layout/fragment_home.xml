@@ -20,30 +20,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:cardBackgroundColor="@color/primary"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="20dp">
-
-                    <com.denzcoskun.imageslider.ImageSlider
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:id="@+id/imageSlide"
-                        app:iss_corner_radius="20"
-                        app:iss_title_background="@drawable/gradient"/>
-
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
 <!--            Danh mục-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +35,19 @@
                     android:text="Danh mục"
                     android:textSize="28sp"
                     android:textColor="@color/primary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_add_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:layout_gravity="right"/>
 
             </LinearLayout>
         <!--Danh mục-->
@@ -84,10 +72,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sản phẩm nổi bật"
+                    android:text="Tất cả sản phẩm"
                     android:textSize="28sp"
                     android:textColor="@color/primary"
+                    android:layout_gravity="center"
                     android:textStyle="bold"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <Button
+                    android:id="@+id/btn_add_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:layout_gravity="right"/>
 
             </LinearLayout>
             <LinearLayout

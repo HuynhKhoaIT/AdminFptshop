@@ -1,6 +1,7 @@
 package com.example.applestore.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,11 +13,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.applestore.APIService.APIService;
+import com.example.applestore.Activity.AddCategoryActivity;
+import com.example.applestore.Activity.LoginActivity;
+import com.example.applestore.Activity.MainActivity;
 import com.example.applestore.Adapter.CategoryAdapter;
 import com.example.applestore.Adapter.ProductAdapter;
 import com.example.applestore.R;
@@ -32,13 +37,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    private ImageSlider imageSlider;
     private RecyclerView mRecyclerView,categoryRec;
     APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
     ProductAdapter productAdapter;
     ArrayList<Product> productList;
     ArrayList<Category> categories;
     CategoryAdapter categoryAdapter;
+
+    Button addcategory,addproduct;
     private Context context;
     public HomeFragment() {}
 
@@ -46,11 +52,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         //Ánh xạ
-        imageSlider = view.findViewById(R.id.imageSlide);
+
         categoryRec = view.findViewById(R.id.categoryList);
         mRecyclerView = view.findViewById(R.id.product_list);
         context = getActivity();
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         categoryRec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 
         // set Data
@@ -62,8 +68,15 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel(R.drawable.bn1, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.bnfstudio, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.bn2, ScaleTypes.FIT));
-        imageSlider.startSliding(3000);
-        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+
+
+//        addcategory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, AddCategoryActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         return view;
     }
     private void getCategory(){
@@ -90,7 +103,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getProduct(){
-        Call<ArrayList<Product>> call = apiService.getTop8Product();
+        Call<ArrayList<Product>> call = apiService.getAllProduct();
         call.enqueue(new Callback<ArrayList<Product>>() {
             @Override
             public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {

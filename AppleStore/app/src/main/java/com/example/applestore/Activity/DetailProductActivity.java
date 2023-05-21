@@ -57,11 +57,6 @@ public class DetailProductActivity extends AppCompatActivity {
         detailPrice = findViewById(R.id.price_product);
         detailDes = findViewById(R.id.des_product);
         imageSlider = findViewById(R.id.imageSlideProduct);
-        amount = findViewById(R.id.amount);
-        btnAddProduct = findViewById(R.id.add_product);
-        btn_plus = findViewById(R.id.btn_plus);
-        btn_minus = findViewById(R.id.btn_minus);
-        rcReview = findViewById(R.id.recReview);
         rcReview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 
 

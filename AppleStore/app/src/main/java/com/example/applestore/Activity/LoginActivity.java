@@ -49,16 +49,12 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText loginEmail, loginPassword;
-    private TextView signupRedirecText;
     private Button loginButton;
 
     private Context context = this;
 
     APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
 
-    GoogleSignInButton googleBtn;
-    GoogleSignInOptions gOptions;
-    GoogleSignInClient gClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.login_email);
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
-        signupRedirecText = findViewById(R.id.signUpRedirectText);
-        googleBtn = findViewById(R.id.googleBtn);
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,77 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                 signIn(email, pass);
             }
         });
-            signupRedirecText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-                }
-            });
-
-            gOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-            gClient = GoogleSignIn.getClient(this,gOptions);
-
-        GoogleSignInAccount gAccount = GoogleSignIn.getLastSignedInAccount(this);
-        if(gAccount != null){
-            finish();
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
-        }
-        ActivityResultLauncher<Intent>activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if(result.getResultCode() == Activity.RESULT_OK){
-                            Intent data = result.getData();
-                            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                            try{
-                                task.getResult(ApiException.class);
-                                finish();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                            catch (ApiException e){
-                                Toast.makeText(LoginActivity.this,"Some thing went Wrong",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                });
-        googleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent signInIntent = gClient.getSignInIntent();
-                activityResultLauncher.launch(signInIntent);
-            }
-        });
 
     }
     private void signIn(String email, String pass) {
         if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             if(!pass.isEmpty()){
-                // Firebase
-//                auth.signInWithEmailAndPassword(email, pass)
-//                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    // Đăng nhập thành công
-//                                    // Chuyển sang màn hình chính
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    startActivity(intent);
-//                                    finish();
-//                                } else {
-//                                    // Đăng nhập thất bại
-//                                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại",
-//                                            Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(LoginActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-                //Database
                 signInWithDB(email,pass);
             }else{
                 loginPassword.setError("password cannot be empty");
