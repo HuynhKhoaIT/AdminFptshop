@@ -46,7 +46,7 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
         getData();
         recProduct = findViewById(R.id.product_list);
-        recProduct.setLayoutManager(new GridLayoutManager(context, 2));
+        recProduct.setLayoutManager(new GridLayoutManager(context, 1));
         getProducts();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
