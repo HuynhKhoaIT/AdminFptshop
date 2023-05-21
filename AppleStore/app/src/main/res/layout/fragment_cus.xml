@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.CusFragment"
-    android:background="@color/white"
+    android:background="#EFECEC"
     android:layout_marginBottom="50dp">
     <ScrollView
         android:layout_width="match_parent"

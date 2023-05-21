@@ -115,12 +115,7 @@
                         android:textColor="#FB0808"/>
                 </LinearLayout>
             </LinearLayout>
-            <View
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#4A4A4A"
-                android:layout_gravity="bottom"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
