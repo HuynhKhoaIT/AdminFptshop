@@ -138,4 +138,7 @@ public interface APIService {
     @PUT("baiviet")
     Call<Blog> updateBlog(@Query("id") int id,@Body Blog blog);
 
+    @GET("neworderamount")
+    Call<String> getNewOrderAmount();
+
 }

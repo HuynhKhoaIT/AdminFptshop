@@ -4,9 +4,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +24,8 @@ import com.example.applestore.Fragment.DoanhThuFragment;
 import com.example.applestore.Fragment.HomeFragment;
 import com.example.applestore.Fragment.OrderFragment;
 import com.example.applestore.R;
+import com.example.applestore.SharedPreferences.SharedPrefManager;
+import com.example.applestore.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SearchView searchView;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
+    View headerView;
+    TextView tvGmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar); //Ignore red line errors
+        headerView = navigationView.getHeaderView(0);
+        tvGmail = headerView.findViewById(R.id.tvGmail);
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+        tvGmail.setText(user.getEmail());
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
@@ -76,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,8 +128,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DoanhThuFragment()).commit();
                 break;
             case R.id.logout:
-                Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Xóa các Activity trước đó khỏi ngăn xếp
+                SharedPrefManager.getInstance(MainActivity.this).logout();
+                startActivity(intent);
+                finish(); // Kết thúc MainActivity
                 break;
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -129,5 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+
 
 }
