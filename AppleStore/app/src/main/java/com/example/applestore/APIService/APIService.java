@@ -127,4 +127,8 @@ public interface APIService {
 
     @PUT("sanpham")
     Call<Product> updateProduct(@Query("id") int id,@Body Product product);
+
+    @DELETE("baiviet")
+    Call<String> deteleProduct(@Query("id") int id);
+
 }

@@ -51,6 +51,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
                 intent.putExtra("Image", blogList.get(holder.getAdapterPosition()).getAnh());
                 intent.putExtra("Title", blogList.get(holder.getAdapterPosition()).getTieuDeBV());
                 intent.putExtra("Desc", blogList.get(holder.getAdapterPosition()).getNoiDung());
+                intent.putExtra("idBlog", blogList.get(holder.getAdapterPosition()).getMaBV());
                 System.out.println(intent);
                 System.out.println(context);
                 context.startActivity(intent);
