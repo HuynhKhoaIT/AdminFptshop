@@ -42,6 +42,9 @@
             android:name=".Activity.UpdateAccount"
             android:exported="false" />
         <activity
+            android:name=".Activity.UpdateBlogActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ProductActivity"
             android:exported="false"
             android:parentActivityName=".Activity.MainActivity" />

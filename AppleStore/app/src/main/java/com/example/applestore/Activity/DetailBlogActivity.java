@@ -1,5 +1,6 @@
 package com.example.applestore.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +26,7 @@ import retrofit2.Response;
 public class DetailBlogActivity extends AppCompatActivity {
     TextView detailDesc, detailTitle;
     ImageView detailImage;
-    Button btn_delete;
+    Button btn_delete,btn_repair;
     APIService apiService = RetrofitClient.getRetrofit().create(APIService.class);
     int idBlog;
     @Override
@@ -37,6 +38,7 @@ public class DetailBlogActivity extends AppCompatActivity {
         detailDesc = findViewById(R.id.detailDesc);
         detailTitle = findViewById(R.id.detailTitle);
         btn_delete = findViewById(R.id.btn_delete);
+        btn_repair = findViewById(R.id.btn_repair);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
@@ -48,6 +50,14 @@ public class DetailBlogActivity extends AppCompatActivity {
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Detail Blog");
+        btn_repair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UpdateBlogActivity.class);
+                intent.putExtra("maBlog", idBlog);
+                startActivity(intent);
+            }
+        });
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +73,6 @@ public class DetailBlogActivity extends AppCompatActivity {
                             Toast.makeText(DetailBlogActivity.this, "Xóa thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
 

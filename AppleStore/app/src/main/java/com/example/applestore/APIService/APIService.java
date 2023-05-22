@@ -1,5 +1,7 @@
 package com.example.applestore.APIService;
 
+import android.telephony.BarringInfo;
+
 import com.example.applestore.model.Cart;
 import com.example.applestore.model.Blog;
 import com.example.applestore.model.CartDetail;
@@ -130,5 +132,10 @@ public interface APIService {
 
     @DELETE("baiviet")
     Call<String> deteleProduct(@Query("id") int id);
+    @GET("baivietbyid")
+    Call<Blog> getBlogByid(@Query("id") int id);
+
+    @PUT("baiviet")
+    Call<Blog> updateBlog(@Query("id") int id,@Body Blog blog);
 
 }
