@@ -13,26 +13,31 @@
             android:title="Home"/>
 
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_setting"
-            android:title="Settings"/>
+            android:id="@+id/nav_customer"
+            android:icon="@drawable/ic_account"
+            android:title="Customer"/>
 
         <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_share"
-            android:title="Share"/>
+            android:id="@+id/nav_blog"
+            android:icon="@drawable/ic_blog"
+            android:title="Blog"/>
 
         <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/nav_about"
-            android:title="About Us"/>
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_order"
+            android:title="Order"/>
+
+        <item
+            android:id="@+id/nav_sales"
+            android:icon="@drawable/ic_chart"
+            android:title="Sales"/>
     </group>
     <item
         android:title="">
 
         <menu>
             <item
-                android:id="@+id/nav_logout"
+                android:id="@+id/logout"
                 android:icon="@drawable/nav_logout"
                 android:title="Logout"/>
         </menu>

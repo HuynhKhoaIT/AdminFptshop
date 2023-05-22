@@ -101,16 +101,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
                 break;
-            case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new AccountFragment()).commit();
+            case R.id.nav_customer:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CusFragment()).commit();
                 break;
-            case R.id.nav_share:
+            case R.id.nav_blog:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new BlogFragment()).commit();
                 break;
-            case R.id.nav_about:
+            case R.id.nav_order:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new OrderFragment()).commit();
                 break;
-            case R.id.nav_logout:
+            case R.id.nav_sales:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new DoanhThuFragment()).commit();
+                break;
+            case R.id.logout:
                 Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -126,4 +129,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
 }

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
     tools:context=".Activity.MainActivity">
 
     <LinearLayout
@@ -26,20 +27,12 @@
             android:layout_height="match_parent"
             android:id="@+id/frame_layout"/>
     </LinearLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        app:itemIconTint="@color/primary"
-        app:itemTextColor="@color/primary"/>
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,4 +44,13 @@
             app:itemTextColor="@color/primary"
             app:menu="@menu/bottom_menu"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/primary"/>
 </androidx.drawerlayout.widget.DrawerLayout>
