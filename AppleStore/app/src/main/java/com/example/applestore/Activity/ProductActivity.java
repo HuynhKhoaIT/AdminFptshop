@@ -49,6 +49,7 @@ public class ProductActivity extends AppCompatActivity {
         recProduct.setLayoutManager(new GridLayoutManager(context, 1));
         getProducts();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Product");
     }
     private void getData() {
         Intent intent = getIntent();

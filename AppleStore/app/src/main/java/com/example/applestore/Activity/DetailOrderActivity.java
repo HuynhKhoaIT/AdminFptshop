@@ -106,7 +106,7 @@ public class DetailOrderActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setTitle("Detail Order");
     }
     private void updateOrder(int idOrder,Order order){
         Call<Order> call = apiService.updateOrder(idOrder,order);
