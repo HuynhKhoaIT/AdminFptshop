@@ -55,6 +55,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 intent.putExtra("Desc", mProductList.get(holder.getAdapterPosition()).getMoTa());
                 intent.putExtra("maSP",mProductList.get(holder.getAdapterPosition()).getMaSP());
                 intent.putExtra("soLuong",mProductList.get(holder.getAdapterPosition()).getSoLuong());
+                intent.putExtra("isDeleted",mProductList.get(holder.getAdapterPosition()).getIsDeteted());
                 intent.putStringArrayListExtra("slideImage",mProductList.get(holder.getAdapterPosition()).getURLImageSlide());
                 context.startActivity(intent);
             }

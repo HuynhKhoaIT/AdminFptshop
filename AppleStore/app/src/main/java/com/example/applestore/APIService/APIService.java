@@ -120,4 +120,11 @@ public interface APIService {
     @GET("doanhthu")
     Call<ArrayList<String>> getDoanhThu();
 
+    @PUT("deletesp")
+    Call<Product> deleteProduct(@Query("id") int id);
+    @GET("sanphambymasp")
+    Call<Product> getProductByMaSP(@Query("id") int id);
+
+    @PUT("sanpham")
+    Call<Product> updateProduct(@Query("id") int id,@Body Product product);
 }

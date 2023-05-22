@@ -3,6 +3,7 @@ package com.example.applestore.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +17,13 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.applestore.APIService.APIService;
 import com.example.applestore.R;
 import com.example.applestore.Retrofit.RetrofitClient;
+import com.example.applestore.model.Product;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailProductActivity extends AppCompatActivity {
     TextView detailName, detailPrice, detailDes, amount;
@@ -37,7 +43,7 @@ public class DetailProductActivity extends AppCompatActivity {
         detailDes = findViewById(R.id.des_product);
         imageSlider = findViewById(R.id.imageSlideProduct);
         btn_repair = findViewById(R.id.btn_repair);
-        btn_delete = findViewById(R.id.btn_repair);
+        btn_delete = findViewById(R.id.btn_delete);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Detail Product");
@@ -47,6 +53,8 @@ public class DetailProductActivity extends AppCompatActivity {
             detailName.setText(bundle.getString("Title"));
             detailPrice.setText(bundle.getString("Price"));
             detailDes.setText(bundle.getString("Desc"));
+            System.out.println(((bundle.getInt("isDeleted")==0)?"Xóa":"Khôi phục"));
+            btn_delete.setText(((bundle.getInt("isDeleted")==0)?"Xóa":"Khôi phục"));
             amountP = bundle.getInt("soLuong");
             idSP = bundle.getInt("maSP");
 
@@ -66,14 +74,36 @@ public class DetailProductActivity extends AppCompatActivity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Call<Product> call = apiService.deleteProduct(idSP);
+                call.enqueue(new Callback<Product>() {
+                    @Override
+                    public void onResponse(Call<Product> call, Response<Product> response) {
+                        if(response.isSuccessful()){
+                            Product product = response.body();
+                            if(product.getIsDeteted() ==0){
+                                btn_delete.setText("Xóa");
 
+                            }
+                            else {
+                                btn_delete.setText("Khôi phục");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Product> call, Throwable t) {
+
+                    }
+                });
             }
         });
         //Repair
         btn_repair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, UpdateProductActivity.class);
+                intent.putExtra("maSP", idSP);
+                startActivity(intent);
             }
         });
 
