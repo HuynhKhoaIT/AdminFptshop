@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -51,6 +52,8 @@ public class HomeFragment extends Fragment {
     private Context context;
     public HomeFragment() {}
 
+    TextView tvNewOrderAmount;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -63,9 +66,11 @@ public class HomeFragment extends Fragment {
         categoryRec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         addcategory = view.findViewById(R.id.btn_add_category);
         addproduct = view.findViewById(R.id.btn_add_product);
+        tvNewOrderAmount = view.findViewById(R.id.tvNewOrderAmount);
         // set Data
         getCategory();
         getProduct();
+        getNewOrderAmount();
 
         //List Slide
         ArrayList<SlideModel> slideModels = new ArrayList<>();
@@ -136,6 +141,28 @@ public class HomeFragment extends Fragment {
             public void onFailure(Call<ArrayList<Product>> call, Throwable t) {
                 Log.i("TAG", t.toString());
                 System.out.println("Lỗi kết nối đến API");
+            }
+        });
+    }
+    public void getNewOrderAmount(){
+
+        Call<String> call = apiService.getNewOrderAmount();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful())
+                {
+                    tvNewOrderAmount.setText(response.body());
+                }
+                else
+                {
+                    tvNewOrderAmount.setText("0");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.out.println("Lỗi kết nối API");
             }
         });
     }

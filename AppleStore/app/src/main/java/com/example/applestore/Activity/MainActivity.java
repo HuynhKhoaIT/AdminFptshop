@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +25,7 @@ import com.example.applestore.Fragment.HomeFragment;
 import com.example.applestore.Fragment.OrderFragment;
 import com.example.applestore.R;
 import com.example.applestore.SharedPreferences.SharedPrefManager;
+import com.example.applestore.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SearchView searchView;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
+    View headerView;
+    TextView tvGmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar); //Ignore red line errors
+        headerView = navigationView.getHeaderView(0);
+        tvGmail = headerView.findViewById(R.id.tvGmail);
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+        tvGmail.setText(user.getEmail());
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
@@ -79,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,5 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+
 
 }
