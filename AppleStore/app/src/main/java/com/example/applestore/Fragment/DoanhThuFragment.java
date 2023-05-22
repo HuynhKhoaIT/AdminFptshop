@@ -22,6 +22,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,11 +59,12 @@ public class DoanhThuFragment extends Fragment {
                     listDoanhThu = new ArrayList<>();
                     listDoanhThu = response.body();
                     System.out.println(listDoanhThu.size());
-                    int i = 1;
-                    for(String s:listDoanhThu){
-                        System.out.println(s + "-"+i);
-                        doanhThuEntries.add(new BarEntry(i,Integer.parseInt(s)));
-                        i++;
+                    LocalDate currentDate = LocalDate.now();
+                    int currentMonth = currentDate.getMonthValue();
+                    int startmonth = (currentMonth-6)>=0?currentMonth-6:0;
+
+                    for(int i = startmonth; i<currentMonth;i++){
+                        doanhThuEntries.add(new BarEntry(i+1,Integer.parseInt(listDoanhThu.get(i))));
                     }
                     List<BarEntry> loiNhuanEntries = new ArrayList<>();
 
@@ -99,5 +101,6 @@ public class DoanhThuFragment extends Fragment {
 
             }
         });
+
     }
 }
