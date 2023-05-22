@@ -83,6 +83,9 @@ public interface APIService {
     @POST("sanpham")
     Call<Product> createProduct(@Body Product product);
 
+    @POST("baiviet")
+    Call<Blog> createBlog(@Body Blog blog);
+
     @GET("donhangbymakh")
     Call<ArrayList<Order>> getListOrder(@Query("id") int id);
 
@@ -113,5 +116,8 @@ public interface APIService {
 
     @PUT("donhang")
     Call<Order> updateOrder(@Query("id") int id,@Body Order order);
+
+    @GET("doanhthu")
+    Call<ArrayList<String>> getDoanhThu();
 
 }

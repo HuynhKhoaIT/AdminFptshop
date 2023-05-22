@@ -30,6 +30,11 @@ public class Blog implements Serializable {
         this.ngayTao = ngayTao;
         this.ngayCapNhat = ngayCapNhat;
     }
+    public Blog(String tieuDeBV, String noiDung, String anh) {
+        this.tieuDeBV = tieuDeBV;
+        this.noiDung = noiDung;
+        this.anh = anh;
+    }
 
     public int getMaBV() {
         return maBV;

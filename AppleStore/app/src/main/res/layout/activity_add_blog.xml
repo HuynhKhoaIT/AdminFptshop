@@ -53,7 +53,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thêm bài viết" />
+            android:text="Thêm bài viết"
+            android:id="@+id/btnAddBlog"/>
 
     </LinearLayout>
 
